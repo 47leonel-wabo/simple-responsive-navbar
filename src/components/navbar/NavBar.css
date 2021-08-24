@@ -1,0 +1,30 @@
+.list-elements {
+  list-style-type: none;
+  margin: 0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  background-color: #eee;
+}
+
+.list-elements a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  color: #00b200;
+  font-weight: 600;
+}
+
+.list-elements a:focus {
+  color: rgb(255, 153, 0);
+  border-bottom: 5px solid rgb(255, 153, 0);
+}
+
+.list-elements a:hover {
+  color: rgb(255, 255, 255);
+  background-color: #00b200;
+}
+
+.list-elements a:active {
+  border-bottom: 5px solid rgb(255, 153, 0);
+}
