@@ -5,20 +5,23 @@ const NavBarLogo = () => {
     return (
         <>
             <header>
-                <a
-                    className="hamburger"
-                    href="#navbar"
-                    aria-label="Open main menu."
-                >
-                    <span className="sr-only">Open main menu</span>
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </a>
+                <div className="identity">
+                    <p>
+                        <i className="fab fa-linkedin logo"></i>
+                        <span className="sr-only">LinkedIn</span>
+                    </p>
+                    <a
+                        className="hamburger"
+                        href="#navbar"
+                        aria-label="Open main menu."
+                    >
+                        <span className="sr-only">Open main menu</span>
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </a>
+                </div>
+
                 <nav id="navbar" className="nav_with_logo">
                     <ul>
-                        <li>
-                            <i className="fab fa-linkedin logo"></i>
-                            <span className="sr-only">LinkedIn</span>
-                        </li>
                         <li>
                             <i className="fas fa-home"></i>
                             <span>Home</span>
