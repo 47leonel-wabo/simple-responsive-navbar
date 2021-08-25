@@ -1,15 +1,13 @@
 import React from "react";
-import NavBar from "../navbar/NavBar";
-import NavBarLogo from "../navbar_and_logo/NavBarLogo";
+import RNavBar from "../responsive-navbar/RNavBar";
 import "./App.css";
 
 const App = () => {
-  return (
-    <>
-      {/* <NavBar /> */}
-      <NavBarLogo />
-    </>
-  );
+    return (
+        <>
+            <RNavBar />
+        </>
+    );
 };
 
 export default App;
