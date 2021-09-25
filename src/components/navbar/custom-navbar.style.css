@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+body {
+    min-width: 100vw;
+    background: url("./img/pysg.jpg") no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+}
+
+.custom-navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.custom-navbar-container .logo {
+    font-weight: 600;
+    font-size: 25px;
+    color: #3e3e3e;
+}
+
+.custom-navbar-container .custom-navbar ul {
+    list-style: none;
+}
+
+.custom-navbar-container .custom-navbar ul li {
+    position: relative;
+    float: left;
+    /* border: 1px solid rebeccapurple; */
+}
+
+/* .custom-navbar-container .custom-navbar ul li span { */
+.custom-navbar-container .custom-navbar ul li a {
+    display: block;
+    padding: 20px 32px;
+    color: #3e3e3e;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* .custom-navbar-container .custom-navbar ul li span:hover { */
+.custom-navbar-container .custom-navbar ul li a:hover {
+    background: #3e3e3e;
+    color: #fff;
+}
+/* Sub-menu level 1 */
+.custom-navbar-container .custom-navbar ul li ul {
+    position: absolute;
+    background: #fff;
+    width: 200px;
+    left: 0;
+    /* hidden by default */
+    display: none;
+}
+.custom-navbar-container .custom-navbar ul li ul li {
+    width: 100%;
+    border-top: 1px solid #3e3e3e17;
+}
+/* Sub-menu level 2 */
+.custom-navbar-container .custom-navbar ul li ul li ul {
+    left: 200px;
+    top: 0;
+}
+/* Show sub menus on hover effect */
+.custom-navbar-container .custom-navbar ul li:focus-within > ul,
+.custom-navbar-container .custom-navbar ul li:hover > ul {
+    display: initial;
+}
+
+/* Menu bar */
+.custom-navbar-container #custom-menu-bar {
+    display: none;
+}
+.custom-navbar-container label {
+    cursor: pointer;
+    color: #3e3e3e;
+    font-size: 20px;
+    display: none;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+    .custom-navbar-container {
+        padding: 20px;
+    }
+    .custom-navbar-container label {
+        display: initial;
+    }
+    .custom-navbar-container .custom-navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid #3e3e3e17;
+        /* Hide menu bar by default */
+        display: none;
+    }
+    /* sub menu */
+    .custom-navbar-container .custom-navbar ul li {
+        width: 100%;
+    }
+    .custom-navbar-container .custom-navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+    .custom-navbar-container .custom-navbar ul li ul li {
+        background: #eee;
+    }
+    .custom-navbar-container .custom-navbar ul li ul li ul li {
+        background: rgb(219, 218, 218);
+    }
+    /* sub sub menu */
+    .custom-navbar-container .custom-navbar ul li ul li ul {
+        width: 100%;
+        left: 0;
+    }
+
+    /* Track any click (touched) on 'Menu' menu bar */
+
+    /* Any click (touched) effect goes on '.custom_navbar' */
+    #custom-menu-bar:checked ~ .custom-navbar {
+        display: initial;
+    }
+}
