@@ -1,11 +1,11 @@
 import React from "react";
-import RNavBar from "../responsive-navbar/RNavBar";
+import CustomNavBar from "../navbar/CustomNavBar";
 import "./App.css";
 
 const App = () => {
     return (
         <>
-            <RNavBar />
+            <CustomNavBar />
         </>
     );
 };
