@@ -52,6 +52,12 @@
     font-size: 18px;
     transition: all 0.3s ease;
     cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.custom-navbar-container .custom-navbar ul li a.active {
+    border-bottom: 1px solid #3e3e3e;
+    background: #3e3e3e12;
 }
 
 /* .custom-navbar-container .custom-navbar ul li span:hover { */

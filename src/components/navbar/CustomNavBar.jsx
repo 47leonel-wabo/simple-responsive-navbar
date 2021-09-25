@@ -1,24 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./custom-navbar.style.css";
 
 function CustomNavBar(props) {
     return (
         <>
             <div className="custom-navbar-container">
-                <a href="/home" className="logo">
+                <NavLink to="/" end className="logo">
                     {" "}
                     Company Logo
-                </a>
+                </NavLink>
                 {/* Hide and show dropdown menu */}
                 <input type="checkbox" id="custom-menu-bar" />
                 <label htmlFor="custom-menu-bar">Menu</label>
                 <nav className="custom-navbar">
                     <ul>
                         <li>
-                            <a href="/home">Home</a>
+                            <NavLink to="/" activeClassName="active" end>
+                                Home
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="/about">About</a>
+                            <NavLink to="/admin" activeClassName="active" end>
+                                Admin
+                            </NavLink>
                         </li>
                         <li>
                             <a href="#">Pages +</a>

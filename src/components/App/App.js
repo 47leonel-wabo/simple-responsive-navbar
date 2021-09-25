@@ -1,6 +1,7 @@
 import { css } from "@emotion/css";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
 import CustomNavBar from "../navbar/CustomNavBar";
 import Products from "../product/Products";
@@ -23,6 +24,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Products />} />
                         <Route path="/admin" element={<Admin />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
             </BrowserRouter>
