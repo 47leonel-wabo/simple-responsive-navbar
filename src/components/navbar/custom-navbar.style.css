@@ -6,15 +6,16 @@
     text-transform: capitalize;
 }
 
-body {
+/* body {
     min-width: 100vw;
     background: url("./img/pysg.jpg") no-repeat;
     background-size: cover;
-    /* background-position: center; */
-}
+    background-position: center;
+} */
 
 .custom-navbar-container {
-    position: fixed;
+    /* TODO: get it back to fixed if needed */
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
