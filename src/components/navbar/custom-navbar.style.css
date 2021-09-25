@@ -55,6 +55,7 @@
     transition: all 0.5s ease-out;
 }
 
+/* Make active link evident to user */
 .custom-navbar-container .custom-navbar ul li a.active {
     border-bottom: 1px solid #3e3e3e;
     background: #3e3e3e12;
