@@ -1,5 +1,6 @@
 import { css } from "@emotion/css";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as ProductService from "./product-service";
 import ProductCard from "./ProductCard";
 
@@ -25,6 +26,17 @@ const productListStyle = css`
 
 function ProductsIndex(props) {
     const [products, setProducts] = useState(null);
+
+    const { state } = useLocation();
+
+    // get the state after navigation
+    useEffect(() => {
+        if (state) {
+            console.log(
+                `Redirection after an error, unable to find book ${state.id}`
+            );
+        }
+    }, []);
 
     useEffect(() => {
         (() => {

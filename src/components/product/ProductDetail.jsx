@@ -41,8 +41,8 @@ function ProductDetail(props) {
                 setProduct(product);
             } catch (e) {
                 console.warn(e);
-                // programmatically navigate when an error occurred
-                navigate("/", { replace: true });
+                // programmatically navigate when an error occurred, and pass a state
+                navigate("/", { replace: true, state: { id } });
             }
         })();
     }, [id]);

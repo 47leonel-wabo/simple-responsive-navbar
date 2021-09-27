@@ -9,7 +9,8 @@
 * Link
 * NavLink (has `end` attribute for strict path match, and `activeClassName` and `activeStyle` for highlighting active state)
 * Nested routes with `Outlet`
-* useNavigate() replaces `history.push('/path')` in previous version
+* useNavigate() hook replaces `history.push('/path')` in previous version
+* useLocation() hook to access navigation properties of component
 
 
 
