@@ -2,14 +2,15 @@ import React from "react";
 import { Navigate, Route } from "react-router-dom";
 
 const MyProtectedRoute = ({
-    element,
-    isAuthenticated,
+    Component,
+    isAuth,
+    redirectTo,
     ...restOfProperties
 }) => {
-    return isAuthenticated ? (
-        <Route {...restOfProperties} element={element} />
+    return isAuth ? (
+        <Route {...restOfProperties} element={<Component />} />
     ) : (
-        <Navigate to="/" />
+        <Navigate to={redirectTo} />
     );
 };
 
