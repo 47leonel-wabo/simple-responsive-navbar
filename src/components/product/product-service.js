@@ -5,5 +5,9 @@ export const fetchData = () => {
 };
 
 export function getBookById(id) {
-    return data.fakeProducts.books.find((p) => p.id === id);
+    const value = data.fakeProducts.books.find((p) => p.id === id);
+    if (value === undefined) {
+        throw Error("Book not found");
+    }
+    return value;
 }

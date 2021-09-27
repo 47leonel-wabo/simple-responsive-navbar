@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as ProductService from "./product-service";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { css } from "@emotion/css";
 
 const productDetailStyle = css`
@@ -31,11 +31,20 @@ const productDetailStyle = css`
 `;
 
 function ProductDetail(props) {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     useEffect(() => {
-        const product = ProductService.getBookById(parseInt(id));
-        setProduct(product);
+        (() => {
+            try {
+                const product = ProductService.getBookById(parseInt(id));
+                setProduct(product);
+            } catch (e) {
+                console.warn(e);
+                // programmatically navigate when an error occurred
+                navigate("/", { replace: true });
+            }
+        })();
     }, [id]);
 
     if (product === null) {
