@@ -27,6 +27,7 @@ const productListStyle = css`
 function ProductsIndex(props) {
     const [products, setProducts] = useState(null);
 
+    // Access navigation state property
     const { state } = useLocation();
 
     // get the state after navigation
