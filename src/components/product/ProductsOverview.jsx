@@ -24,7 +24,7 @@ const productListStyle = css`
     }
 `;
 
-function ProductsIndex(props) {
+function ProductsIndex({ title }) {
     const [products, setProducts] = useState(null);
 
     // Access navigation state property
@@ -52,7 +52,7 @@ function ProductsIndex(props) {
 
     return (
         <div className={productListStyle}>
-            <span className="page-title">All products available</span>
+            <span className="page-title">{title}</span>
             <div className="items">
                 {products.books.map((product) => (
                     <ProductCard key={product.id} product={product} />

@@ -24,7 +24,10 @@ function Products(props) {
                 alt="Green"
             />
             <Routes>
-                <Route path="/" element={<ProductsIndex />} />
+                <Route
+                    path="/"
+                    element={<ProductsIndex title="Available products" />}
+                />
                 <Route path=":id" element={<ProductDetail />} />
             </Routes>
         </div>

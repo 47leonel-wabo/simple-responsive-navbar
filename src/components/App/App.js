@@ -1,8 +1,9 @@
 import { css } from "@emotion/css";
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
+import MyProtectedRoute from "../common/ProtectedRoute";
 import CustomNavBar from "../navbar/CustomNavBar";
 import Products from "../product/Products";
 import "./App.css";
@@ -16,6 +17,7 @@ const appStyle = css`
 `;
 
 const App = () => {
+    const [authenticated] = useState(true);
     return (
         <>
             <BrowserRouter>
@@ -23,7 +25,16 @@ const App = () => {
                 <div className={appStyle}>
                     <Routes>
                         <Route path="/products*" element={<Products />} />
-                        <Route path="/admin" element={<Admin />} />
+                        <Route
+                            path="/admin*"
+                            element={
+                                authenticated ? (
+                                    <Admin />
+                                ) : (
+                                    <Navigate to="/products" />
+                                )
+                            }
+                        />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
