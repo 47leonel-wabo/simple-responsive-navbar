@@ -1,6 +1,8 @@
 import { css } from "@emotion/css";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import ProductDetail from "./ProductDetail";
+import ProductsIndex from "./ProductsOverview";
 
 const productsStyle = css`
     display: flex;
@@ -21,9 +23,10 @@ function Products(props) {
                 src="/assets/images/atlight.png"
                 alt="Green"
             />
-            <div>
-                <Outlet />
-            </div>
+            <Routes>
+                <Route path="/" element={<ProductsIndex />} />
+                <Route path=":id" element={<ProductDetail />} />
+            </Routes>
         </div>
     );
 }

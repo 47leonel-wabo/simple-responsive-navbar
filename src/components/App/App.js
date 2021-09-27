@@ -4,9 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
 import CustomNavBar from "../navbar/CustomNavBar";
-import ProductDetail from "../product/ProductDetail";
 import Products from "../product/Products";
-import ProductsIndex from "../product/ProductsOverview";
 import "./App.css";
 
 const appStyle = css`
@@ -24,10 +22,7 @@ const App = () => {
                 <CustomNavBar />
                 <div className={appStyle}>
                     <Routes>
-                        <Route path="/" element={<Products />}>
-                            <Route path="/" element={<ProductsIndex />} />
-                            <Route path=":id" element={<ProductDetail />} />
-                        </Route>
+                        <Route path="/products*" element={<Products />} />
                         <Route path="/admin" element={<Admin />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
