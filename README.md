@@ -11,6 +11,7 @@
 * Nested routes with `Outlet`
 * useNavigate() hook replaces `history.push('/path')` in previous version
 * useLocation() hook to access navigation properties of component
+* Navigate `delta` used to navigate forward (1) and backwards (-1)
 
 
 
@@ -19,3 +20,5 @@
 ![mobile](./screensshots/mobile.png)
 
 ![desktop](./screensshots/desktop.png)
+
+🔥 

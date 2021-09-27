@@ -27,6 +27,26 @@ const productDetailStyle = css`
                 font-weight: bold;
             }
         }
+        &-back-btn {
+            button {
+                border: 2px solid green;
+                margin: 8px 0;
+                padding: 2px 8px;
+                border-radius: 5px;
+                background: none;
+                outline: 0;
+                color: green;
+                cursor: pointer;
+                transition: all 0.3s ease-in;
+
+                &:hover {
+                    border: none;
+                    background: #3e3e3e;
+                    color: white;
+                    border: 2px solid #3e3e3e;
+                }
+            }
+        }
     }
 `;
 
@@ -59,6 +79,12 @@ function ProductDetail(props) {
                 <span className="product-item-price">
                     {`$${product.price / 100}`}
                 </span>
+            </div>
+            <div className="product-back-btn">
+                {/* With navigate API, (-1) means backwards and (1) forwards navigation */}
+                <button type="button" onClick={() => navigate(-1)}>
+                    Back
+                </button>
             </div>
         </div>
     );
