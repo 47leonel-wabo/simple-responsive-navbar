@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 const productsStyle = css`
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
 
     .logo {
         width: 100px;
