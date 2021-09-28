@@ -1,6 +1,12 @@
 import { css } from "@emotion/css";
 import React, { useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter,
+    Navigate,
+    Route,
+    Routes,
+    useRoutes,
+} from "react-router-dom";
 import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
 import MyProtectedRoute from "../common/ProtectedRoute";
@@ -19,30 +25,33 @@ const appStyle = css`
 
 const App = () => {
     const [authenticated] = useState(true);
-    return (
-        <>
-            <BrowserRouter>
-                <ScrollToTop />
-                <CustomNavBar />
-                <div className={appStyle}>
-                    <Routes>
-                        <Route path="/products*" element={<Products />} />
-                        <Route
-                            path="/admin*"
-                            element={
-                                authenticated ? (
-                                    <Admin />
-                                ) : (
-                                    <Navigate to="/products" />
-                                )
-                            }
-                        />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </div>
-            </BrowserRouter>
-        </>
-    );
+    const routes = useRoutes([
+        {
+            path: "/products*",
+            element: <Products />,
+        },
+        {
+            path: "/admin*",
+            element: authenticated ? <Admin /> : <Navigate to="/products" />,
+        },
+        {
+            path: "*",
+            element: <NotFound />,
+        },
+    ]);
+    return routes;
 };
 
-export default App;
+const AppWrapper = () => (
+    <>
+        <BrowserRouter>
+            <ScrollToTop />
+            <CustomNavBar />
+            <div className={appStyle}>
+                <App />
+            </div>
+        </BrowserRouter>
+    </>
+);
+
+export default AppWrapper;
