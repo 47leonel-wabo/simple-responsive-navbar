@@ -86,17 +86,20 @@ const productEditStyle = css`
     }
 `;
 
-function ProductEdit(props) {
+function ProductEdit({ isEdit }) {
     const { id } = useParams();
     const navigate = useNavigate();
     const [formData, setFormData] = useState(null);
 
     useEffect(() => {
-        setFormData({
-            name: "",
-            price: 0,
-            img: "",
-        });
+        if (!isEdit) {
+            setFormData({
+                name: "",
+                price: 0,
+                img: "",
+            });
+            return;
+        }
 
         (async () => {
             try {
@@ -182,27 +185,33 @@ function ProductEdit(props) {
                     onChange={({ target }) => handleValueChange(target)}
                 />
                 <div className="edit-form-buttons">
-                    <button
-                        type="button"
-                        className="edit-form-save-button"
-                        onClick={handleSave}
-                    >
-                        Create
-                    </button>
-                    <button
-                        type="button"
-                        className="edit-form-update-button"
-                        onClick={handleUpdate}
-                    >
-                        Update
-                    </button>
-                    <button
-                        type="button"
-                        className="edit-form-delete-button"
-                        onClick={handleDelete}
-                    >
-                        Delete
-                    </button>
+                    {!isEdit && (
+                        <button
+                            type="button"
+                            className="edit-form-save-button"
+                            onClick={handleSave}
+                        >
+                            Create
+                        </button>
+                    )}
+                    {isEdit && (
+                        <button
+                            type="button"
+                            className="edit-form-update-button"
+                            onClick={handleUpdate}
+                        >
+                            Update
+                        </button>
+                    )}
+                    {isEdit && (
+                        <button
+                            type="button"
+                            className="edit-form-delete-button"
+                            onClick={handleDelete}
+                        >
+                            Delete
+                        </button>
+                    )}
                 </div>
             </form>
         </div>

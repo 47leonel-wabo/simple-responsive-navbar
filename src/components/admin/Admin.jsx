@@ -38,14 +38,15 @@ function Admin(props) {
         <div className={adminStyle}>
             <div className="adminStyle-header">
                 <span className="adminStyle-title">Admin panel</span>
-                <Link to="new" className="adminStyle-new">
+
+                <Link to="/admin/new" className="adminStyle-new">
                     + New
                 </Link>
             </div>
             <Routes>
                 <Route path="/" element={<ProductsIndex title="" />} />
-                <Route path="/new" element={<ProductEdit />} />
-                <Route path=":id" element={<ProductEdit />} />
+                <Route path="/new" element={<ProductEdit isEdit={false} />} />
+                <Route path=":id" element={<ProductEdit isEdit={true} />} />
             </Routes>
         </div>
     );
