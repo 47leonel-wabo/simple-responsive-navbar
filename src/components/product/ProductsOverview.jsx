@@ -16,6 +16,22 @@ const productListStyle = css`
             margin: 8px 0;
             text-transform: none;
         }
+        &-sort,
+        &-order {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+
+            span {
+                margin-right: 32px;
+                color: #6f6f6f;
+                font-weight: bolder;
+            }
+            label {
+                cursor: pointer;
+                padding: 0 8px;
+            }
+        }
     }
 
     .items {
@@ -47,10 +63,36 @@ function ProductsIndex({ title }) {
 
     useEffect(() => {
         (() => {
-            const data = ProductService.fetchData();
-            setProducts(data);
+            const data = ProductService.fetchData().books;
+            const params = Object.fromEntries([...searchParams]);
+            sortProductsFromParams(data, params);
         })();
     }, []);
+
+    const sortProductsFromParams = (data, params) => {
+        // if there is no param
+        if (!Object.keys(params).length) {
+            setProducts(data);
+            return;
+        }
+        // otherwise
+        const sortedData = [...data].sort((a, b) => {
+            const { sort, order } = params;
+            // console.log(sort, a[sort], b[sort]);
+            switch (order) {
+                case "asc": {
+                    return a[sort] > b[sort] ? 1 : -1;
+                }
+                case "desc": {
+                    return a[sort] < b[sort] ? 1 : -1;
+                }
+                default: {
+                    return 0;
+                }
+            }
+        });
+        setProducts(sortedData);
+    };
 
     const handleRadioChange = (e) => {
         const { value, name } = e.target;
@@ -58,6 +100,7 @@ function ProductsIndex({ title }) {
         const currentParams = Object.fromEntries([...searchParams]);
         const newParams = { ...currentParams, [name]: value };
         setSearchParams(newParams);
+        sortProductsFromParams(products, newParams);
     };
 
     if (products === null) {
@@ -71,48 +114,56 @@ function ProductsIndex({ title }) {
                 <div className="page-sort">
                     <span>Sort</span>
                     <label>
-                        Name:
+                        Name
                         <input
                             type="radio"
                             name="sort"
                             value="name"
                             onChange={handleRadioChange}
+                            defaultChecked={searchParams.get("sort") === "name"}
                         />
                     </label>
                     <label>
-                        Price:
+                        Price
                         <input
                             type="radio"
                             name="sort"
                             value="price"
                             onChange={handleRadioChange}
+                            defaultChecked={
+                                searchParams.get("sort") === "price"
+                            }
                         />
                     </label>
                 </div>
                 <div className="page-order">
                     <span>Order</span>
                     <label>
-                        Ascending:
+                        Ascending
                         <input
                             type="radio"
                             name="order"
                             value="asc"
                             onChange={handleRadioChange}
+                            defaultChecked={searchParams.get("order") === "asc"}
                         />
                     </label>
                     <label>
-                        Descending:
+                        Descending
                         <input
                             type="radio"
                             name="order"
                             value="desc"
                             onChange={handleRadioChange}
+                            defaultChecked={
+                                searchParams.get("order") === "desc"
+                            }
                         />
                     </label>
                 </div>
             </div>
             <div className="items">
-                {products.books.map((product) => (
+                {products.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>
