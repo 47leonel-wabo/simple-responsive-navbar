@@ -14,6 +14,7 @@
 * Navigate `delta` used to navigate forward (1) and backwards (-1)
 * useSearchParams hook to dynamically change URL parameters
 * useRoutes hook
+* Code splitting and lazy loading
 
 
 

@@ -1,8 +1,12 @@
 import { css } from "@emotion/css";
-import React from "react";
+import React, { lazy } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import ProductEdit from "../product/ProductEdit";
-import ProductsIndex from "../product/ProductsOverview";
+// import ProductEdit from "../product/ProductEdit";
+// import ProductsIndex from "../product/ProductsOverview";
+
+// Code splitting
+const ProductEdit = lazy(() => import("../product/ProductEdit"));
+const ProductsIndex = lazy(() => import("../product/ProductsOverview"));
 
 const adminStyle = css`
 

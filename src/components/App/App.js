@@ -1,15 +1,8 @@
 import { css } from "@emotion/css";
 import React, { useState } from "react";
-import {
-    BrowserRouter,
-    Navigate,
-    Route,
-    Routes,
-    useRoutes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
 import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
-import MyProtectedRoute from "../common/ProtectedRoute";
 import ScrollToTop from "../common/ScrollToTop";
 import CustomNavBar from "../navbar/CustomNavBar";
 import Products from "../product/Products";
@@ -42,6 +35,7 @@ const App = () => {
     return routes;
 };
 
+// "AppWrapper" name is mandatory
 const AppWrapper = () => (
     <>
         <BrowserRouter>
