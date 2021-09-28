@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "../404/NotFound";
 import Admin from "../admin/Admin";
 import MyProtectedRoute from "../common/ProtectedRoute";
+import ScrollToTop from "../common/ScrollToTop";
 import CustomNavBar from "../navbar/CustomNavBar";
 import Products from "../product/Products";
 import "./App.css";
@@ -21,6 +22,7 @@ const App = () => {
     return (
         <>
             <BrowserRouter>
+                <ScrollToTop />
                 <CustomNavBar />
                 <div className={appStyle}>
                     <Routes>
