@@ -23,3 +23,9 @@ export const updatePlat = (payload) => {
     const i = data.fakeProducts.books.findIndex((p) => p.id === payload.id);
     data.fakeProducts.books[i] = payload;
 };
+
+export const deletePlat = (platID) => {
+    data.fakeProducts.books = data.fakeProducts.books.filter(
+        (p) => p.id !== platID
+    );
+};

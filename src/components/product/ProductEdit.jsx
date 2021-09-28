@@ -1,7 +1,12 @@
 import { css } from "@emotion/css";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { addPlat, getBookById, updatePlat } from "./product-service";
+import {
+    addPlat,
+    deletePlat,
+    getBookById,
+    updatePlat,
+} from "./product-service";
 
 const productEditStyle = css`
     width: 550px;
@@ -61,6 +66,23 @@ const productEditStyle = css`
                 outline: 0;
             }
         }
+
+        &-delete-button {
+            border: 1px solid red;
+            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: none;
+            color: red;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: red;
+                color: white;
+                outline: 0;
+            }
+        }
     }
 `;
 
@@ -103,6 +125,20 @@ function ProductEdit(props) {
     const handleUpdate = () => {
         try {
             updatePlat(formData);
+            navigate(`/admin`, { replace: true });
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
+    const handleDelete = () => {
+        if (
+            !window.confirm(`Would you really want to delete ${formData.name}`)
+        ) {
+            return;
+        }
+        try {
+            deletePlat(formData.id);
             navigate(`/admin`, { replace: true });
         } catch (e) {
             console.warn(e);
@@ -159,6 +195,13 @@ function ProductEdit(props) {
                         onClick={handleUpdate}
                     >
                         Update
+                    </button>
+                    <button
+                        type="button"
+                        className="edit-form-delete-button"
+                        onClick={handleDelete}
+                    >
+                        Delete
                     </button>
                 </div>
             </form>
