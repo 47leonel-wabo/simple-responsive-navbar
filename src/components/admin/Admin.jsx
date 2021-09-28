@@ -1,12 +1,18 @@
 import { css } from "@emotion/css";
-import React, { lazy, Suspense } from "react";
+import React, { lazy } from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import ComponentLoader from "../common/ComponentLoader";
 // import ProductEdit from "../product/ProductEdit";
 // import ProductsIndex from "../product/ProductsOverview";
 
 // Code splitting
-const ProductEdit = lazy(() => import("../product/ProductEdit"));
-const ProductsIndex = lazy(() => import("../product/ProductsOverview"));
+const ProductEdit = ComponentLoader(
+    lazy(() => import("../product/ProductEdit"))
+);
+
+const ProductsIndex = ComponentLoader(
+    lazy(() => import("../product/ProductsOverview"))
+);
 
 const adminStyle = css`
 
@@ -48,14 +54,7 @@ function Admin(props) {
                 </Link>
             </div>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <Suspense fallback={<div>UI Loading...</div>}>
-                            <ProductsIndex title="" />
-                        </Suspense>
-                    }
-                />
+                <Route path="/" element={<ProductsIndex title="" />} />
                 <Route path="/new" element={<ProductEdit isEdit={false} />} />
                 <Route path=":id" element={<ProductEdit isEdit={true} />} />
             </Routes>

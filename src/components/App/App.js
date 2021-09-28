@@ -2,11 +2,18 @@ import { css } from "@emotion/css";
 import React, { useState } from "react";
 import { BrowserRouter, Navigate, useRoutes } from "react-router-dom";
 import NotFound from "../404/NotFound";
-import Admin from "../admin/Admin";
+import ComponentLoader from "../common/ComponentLoader";
+// import Admin from "../admin/Admin";
 import ScrollToTop from "../common/ScrollToTop";
 import CustomNavBar from "../navbar/CustomNavBar";
-import Products from "../product/Products";
+// import Products from "../product/Products";
 import "./App.css";
+
+// Lazy loading and code splitting
+const Admin = ComponentLoader(React.lazy(() => import("../admin/Admin")));
+const Products = ComponentLoader(
+    React.lazy(() => import("../product/Products"))
+);
 
 const appStyle = css`
     padding: 32px;

@@ -1,12 +1,17 @@
 import { css } from "@emotion/css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import ComponentLoader from "../common/ComponentLoader";
 // import ProductDetail from "./ProductDetail";
 // import ProductsIndex from "./ProductsOverview";
 
 // Code splitting
-const ProductDetail = React.lazy(() => import("./ProductDetail"));
-const ProductsIndex = React.lazy(() => import("./ProductsOverview"));
+const ProductDetail = ComponentLoader(
+    React.lazy(() => import("./ProductDetail"))
+);
+const ProductsIndex = ComponentLoader(
+    React.lazy(() => import("./ProductsOverview"))
+);
 
 const productsStyle = css`
     display: flex;

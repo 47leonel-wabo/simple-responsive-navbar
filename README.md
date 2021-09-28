@@ -15,6 +15,7 @@
 * useSearchParams hook to dynamically change URL parameters
 * useRoutes hook
 * Code splitting and lazy loading
+* Loading ready with `Suspense`
 
 
 
