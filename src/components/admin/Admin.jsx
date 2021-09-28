@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 // import ProductEdit from "../product/ProductEdit";
 // import ProductsIndex from "../product/ProductsOverview";
@@ -48,7 +48,14 @@ function Admin(props) {
                 </Link>
             </div>
             <Routes>
-                <Route path="/" element={<ProductsIndex title="" />} />
+                <Route
+                    path="/"
+                    element={
+                        <Suspense fallback={<div>UI Loading...</div>}>
+                            <ProductsIndex title="" />
+                        </Suspense>
+                    }
+                />
                 <Route path="/new" element={<ProductEdit isEdit={false} />} />
                 <Route path=":id" element={<ProductEdit isEdit={true} />} />
             </Routes>
