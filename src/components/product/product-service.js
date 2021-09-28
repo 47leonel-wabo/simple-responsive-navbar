@@ -11,3 +11,9 @@ export function getBookById(id) {
     }
     return value;
 }
+
+export const addPlat = (payload) => {
+    payload.id = data.fakeProducts.books.length + 1;
+    // alert(JSON.stringify(payload, null, 2));
+    return data.fakeProducts.books.push(payload);
+};

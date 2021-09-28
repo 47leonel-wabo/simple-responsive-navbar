@@ -1,5 +1,7 @@
 import { css } from "@emotion/css";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addPlat } from "./product-service";
 
 const productEditStyle = css`
     width: 550px;
@@ -17,6 +19,7 @@ const productEditStyle = css`
             &.edit-textarea {
                 height: 80px;
                 padding: 8px;
+                resize: none;
             }
         }
 
@@ -40,6 +43,7 @@ const productEditStyle = css`
 `;
 
 function ProductEdit(props) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState(null);
 
     useEffect(() => {
@@ -55,7 +59,12 @@ function ProductEdit(props) {
     };
 
     const handleSave = () => {
-        alert(JSON.stringify(formData, null, 2));
+        try {
+            const id = addPlat(formData);
+            navigate(`/admin/${id}`);
+        } catch (e) {
+            console.warn(e);
+        }
     };
 
     if (formData === null) {
@@ -66,14 +75,6 @@ function ProductEdit(props) {
         <div className={productEditStyle}>
             <span className="edit-title">Creation form</span>
             <form className="edit-form">
-                {/* <input
-                    type="text"
-                    className="edit-form-input"
-                    name="id"
-                    placeholder="ID"
-                    value={formData.id}
-                    onChange={handleValueChange}
-                /> */}
                 <input
                     type="text"
                     className="edit-form-input"
