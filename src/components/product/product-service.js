@@ -17,3 +17,9 @@ export const addPlat = (payload) => {
     // alert(JSON.stringify(payload, null, 2));
     return data.fakeProducts.books.push(payload);
 };
+
+export const updatePlat = (payload) => {
+    // alert(JSON.stringify(getBookById(payload.id)));
+    const i = data.fakeProducts.books.findIndex((p) => p.id === payload.id);
+    data.fakeProducts.books[i] = payload;
+};

@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { addPlat } from "./product-service";
+import { useNavigate, useParams } from "react-router-dom";
+import { addPlat, getBookById, updatePlat } from "./product-service";
 
 const productEditStyle = css`
     width: 550px;
@@ -23,7 +23,12 @@ const productEditStyle = css`
             }
         }
 
-        &-button {
+        &-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        &-save-button {
             border: 1px solid green;
             font-size: 16px;
             padding: 4px 8px;
@@ -39,10 +44,28 @@ const productEditStyle = css`
                 outline: 0;
             }
         }
+
+        &-update-button {
+            border: 1px solid blue;
+            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: none;
+            color: blue;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: blue;
+                color: white;
+                outline: 0;
+            }
+        }
     }
 `;
 
 function ProductEdit(props) {
+    const { id } = useParams();
     const navigate = useNavigate();
     const [formData, setFormData] = useState(null);
 
@@ -52,6 +75,16 @@ function ProductEdit(props) {
             price: 0,
             img: "",
         });
+
+        (async () => {
+            try {
+                const product = await getBookById(parseInt(id));
+                setFormData(product);
+            } catch (e) {
+                console.warn(e);
+                navigate(`/admin`, { replace: true });
+            }
+        })();
     }, []);
 
     const handleValueChange = ({ name, value }) => {
@@ -61,7 +94,16 @@ function ProductEdit(props) {
     const handleSave = () => {
         try {
             const id = addPlat(formData);
-            navigate(`/admin/${id}`);
+            navigate(`/admin`, { replace: true });
+        } catch (e) {
+            console.warn(e);
+        }
+    };
+
+    const handleUpdate = () => {
+        try {
+            updatePlat(formData);
+            navigate(`/admin`, { replace: true });
         } catch (e) {
             console.warn(e);
         }
@@ -103,13 +145,22 @@ function ProductEdit(props) {
                     placeholder="Product image link"
                     onChange={({ target }) => handleValueChange(target)}
                 />
-                <button
-                    type="button"
-                    className="edit-form-button"
-                    onClick={handleSave}
-                >
-                    Create
-                </button>
+                <div className="edit-form-buttons">
+                    <button
+                        type="button"
+                        className="edit-form-save-button"
+                        onClick={handleSave}
+                    >
+                        Create
+                    </button>
+                    <button
+                        type="button"
+                        className="edit-form-update-button"
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </button>
+                </div>
             </form>
         </div>
     );

@@ -45,6 +45,7 @@ function Admin(props) {
             <Routes>
                 <Route path="/" element={<ProductsIndex title="" />} />
                 <Route path="/new" element={<ProductEdit />} />
+                <Route path=":id" element={<ProductEdit />} />
             </Routes>
         </div>
     );
